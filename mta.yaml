@@ -1,0 +1,94 @@
+_schema-version: "3.2"
+ID: ovpnamespace-ovpmarketord
+description: Overview Page for Orders Analise
+version: 0.0.1
+modules:
+- name: ovpnamespace-ovpmarketord-destination-content
+  type: com.sap.application.content
+  requires:
+  - name: ovpnamespace-ovpmarketord-destination-service
+    parameters:
+      content-target: true
+  - name: ovpnamespace-ovpmarketord-repo-host
+    parameters:
+      service-key:
+        name: ovpnamespace-ovpmarketord-repo-host-key
+  - name: ovpnamespace-ovpmarketord-uaa
+    parameters:
+      service-key:
+        name: ovpnamespace-ovpmarketord-uaa-key
+  parameters:
+    content:
+      instance:
+        destinations:
+        - Name: ovpnamespace-ovpmarketord_html_repo_host
+          ServiceInstanceName: ovpnamespace-ovpmarketord-html5-srv
+          ServiceKeyName: ovpnamespace-ovpmarketord-repo-host-key
+          sap.cloud.service: ovpnamespace-ovpmarketord
+        - Authentication: OAuth2UserTokenExchange
+          Name: ovpnamespace-ovpmarketord_uaa
+          ServiceInstanceName: ovpnamespace-ovpmarketord-xsuaa-srv
+          ServiceKeyName: ovpnamespace-ovpmarketord-uaa-key
+          sap.cloud.service: ovpnamespace-ovpmarketord
+        existing_destinations_policy: ignore
+  build-parameters:
+    no-source: true
+- name: ovpnamespace-ovpmarketord-app-content
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: ovpnamespace-ovpmarketord-repo-host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: resources
+    requires:
+    - artifacts:
+      - ovpnamespaceovpmarketord.zip
+      name: ovpnamespaceovpmarketord
+      target-path: resources/
+- name: ovpnamespaceovpmarketord
+  type: html5
+  path: .
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+resources:
+- name: ovpnamespace-ovpmarketord-destination-service
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      HTML5Runtime_enabled: true
+      init_data:
+        instance:
+          destinations:
+          - Authentication: NoAuthentication
+            Name: ui5
+            ProxyType: Internet
+            Type: HTTP
+            URL: https://ui5.sap.com
+          existing_destinations_policy: update
+      version: 1.0.0
+    service: destination
+    service-name: ovpnamespace-ovpmarketord-destination-service
+    service-plan: lite
+- name: ovpnamespace-ovpmarketord-uaa
+  type: org.cloudfoundry.managed-service
+  parameters:
+    path: ./xs-security.json
+    service: xsuaa
+    service-name: ovpnamespace-ovpmarketord-xsuaa-srv
+    service-plan: application
+- name: ovpnamespace-ovpmarketord-repo-host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-name: ovpnamespace-ovpmarketord-html5-srv
+    service-plan: app-host
+parameters:
+  deploy_mode: html5-repo
+  enable-parallel-deployments: true

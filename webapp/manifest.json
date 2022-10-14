@@ -1,0 +1,225 @@
+{
+    "_version": "1.42.0",
+    "sap.app": {
+        "id": "ovpnamespace.ovpmarketord",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "0.0.1"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "resources": "resources.json",
+        "sourceTemplate": {
+            "id": "@sap/generator-fiori:ovp",
+            "version": "1.7.5",
+            "toolsId": "50e11317-05a6-4062-afd9-577326916f05"
+        },
+        "dataSources": {
+            "mainService": {
+                "uri": "/sap/opu/odata/sap/ZPP_UI_OVP_ORDERS_O2/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [
+                        "ZPP_UI_OVP_ORDERS_O2_VAN",
+                        "annotation"
+                    ],
+                    "localUri": "localService/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            },
+            "ZPP_UI_OVP_ORDERS_O2_VAN": {
+                "uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZPP_UI_OVP_ORDERS_O2_VAN',Version='0001')/$value/",
+                "type": "ODataAnnotation",
+                "settings": {
+                    "localUri": "localService/ZPP_UI_OVP_ORDERS_O2_VAN.xml"
+                }
+            },
+            "annotation": {
+                "type": "ODataAnnotation",
+                "uri": "annotations/annotation.xml",
+                "settings": {
+                    "localUri": "annotations/annotation.xml"
+                }
+            }
+        },
+        "crossNavigation": {
+            "inbounds": {
+                "ovpnamespace-ovpmarketord-inbound": {
+                    "signature": {
+                        "parameters": {},
+                        "additionalParameters": "allowed"
+                    },
+                    "semanticObject": "ovpsemanticobject",
+                    "action": "ovpreportaction",
+                    "title": "{{flpTitle}}",
+                    "subTitle": "{{flpSubtitle}}",
+                    "icon": "https://icons.iconarchive.com/icons/custom-icon-design/flatastic-9/128/Bar-chart-icon.png"
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": true,
+        "dependencies": {
+            "minUI5Version": "1.102.7",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.ushell": {},
+                "sap.f": {},
+                "sap.ui.comp": {},
+                "sap.ui.generic.app": {},
+                "sap.suite.ui.generic.template": {},
+                "sap.ovp": {},
+                "sap.ui.rta": {},
+                "sap.ui.layout": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "ovpnamespace.ovpmarketord.i18n.i18n"
+                }
+            },
+            "mainModel": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {
+                    "defaultBindingMode": "TwoWay",
+                    "defaultCountMode": "Inline",
+                    "refreshAfterChange": false,
+                    "metadataUrlParams": {
+                        "sap-value-list": "none"
+                    }
+                }
+            },
+            "@i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/i18n.properties"
+            }
+        },
+        "resources": {
+            "css": []
+        },
+        "routing": {
+            "config": {},
+            "routes": [],
+            "targets": {}
+        }
+    },
+    "sap.ovp": {
+        "globalFilterModel": "mainModel",
+        "globalFilterEntityType": "GlobalFiltersType",
+        "containerLayout": "resizable",
+        "enableLiveFilter": true,
+        "considerAnalyticalParameters": false,
+        "cards": {
+            "IDOrdQuanByCountry": {
+                "model": "mainModel",
+                "template": "sap.ovp.cards.charts.analytical",
+                "settings": {
+                    "title": "Orders Quantity",
+                    "entitySet": "OVPCards",
+                    "tabs": [
+                        {
+                            "value": "By Country",
+                            "dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#dpOrdQuanByCountry",
+                            "presentationAnnotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant#pvOrdQuanByCountry",
+                            "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#OrdQuanByCountry"
+                        },
+                        {
+                            "value": "By Product Groups",
+                            "dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#dpOrdQuanByProdGr",
+                            "presentationAnnotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant#pvOrdQuanByProdGr",
+                            "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#OrdQuanByProdGr"
+                        }
+                    ]
+                }
+            },
+            "IDIncomeByCountry": {
+                "model": "mainModel",
+                "template": "sap.ovp.cards.charts.analytical",
+                "settings": {
+                    "title": "Income Percentage",
+                    "entitySet": "OVPCards",
+                    "dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#dpAVGIncomeCountry",
+                    "presentationAnnotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant#pvAVGIncomeCountry",
+                    "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#AVGIncomeCountry"
+                }
+            },
+            "IDOrdersList": {
+                "model": "mainModel",
+                "template": "sap.ovp.cards.list",
+                "settings": {
+                    "title": "Profitability of Orders",
+                    "entitySet": "OVPCards",
+                    "listFlavor": "bar",
+                    "listType": "extended",
+                    "sortOrder": "ascending",
+                    "sortBy": "GrossIncomPercentageList",
+                    "presentationAnnotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant#pvOrdersList",
+                    "annotationPath": "com.sap.vocabularies.UI.v1.LineItem#OrdersList",
+                    "dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#GrossIncomPercentageList",
+                    "defaultSpan": {
+                        "rows": 10,
+                        "cols": 1
+                    }
+                }
+            },
+            "IDStackCard": {
+                "model": "mainModel",
+                "template": "sap.ovp.cards.stack",
+                "settings": {
+                    "title": "Orders List",
+                    "entitySet": "OVPCards",
+                    "itemText": "Order",
+                    "identificationAnnotationPath": "com.sap.vocabularies.UI.v1.Identification#FaceSide,com.sap.vocabularies.UI.v1.Identification#FlipSide",
+                    "objectStreamCardsSettings": {
+                        "annotationPath": "com.sap.vocabularies.UI.v1.Facets#StackOrdersList",
+                        "showFirstActionInFooter": "true"
+                    }
+                }
+            }
+        },
+        "filterSettings": {
+            "dateSettings": {
+                "useDateRange": true,
+                "exclude": false,
+                "selectedValues": "DATE,FROM,TODAY,TOMORROW,YESTERDAY,TO"
+            }
+        }
+    },
+    "sap.fiori": {
+        "registrationIds": [],
+        "archeType": "analytical"
+    },
+    "sap.ui.generic.app": {
+        "settings": {}
+    },
+    "sap.cloud": {
+        "public": true,
+        "service": "ovpnamespace-ovpmarketord"
+    }
+}
