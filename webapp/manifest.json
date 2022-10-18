@@ -142,7 +142,7 @@
                 "settings": {
                     "title": "Orders Quantity",
                     "entitySet": "OVPCards",
-                    "navigation" : "headerNav",
+                    "navigation" : "dataPointNav",
                     "tabs": [
                         {
                             "value": "By Country",
@@ -165,7 +165,7 @@
                 "settings": {
                     "title": "Income Percentage",
                     "entitySet": "OVPCards",
-                    "navigation" : "headerNav",
+                    "navigation" : "chartNav", 
                     "dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#dpAVGIncomeCountry",
                     "presentationAnnotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant#pvAVGIncomeCountry",
                     "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#AVGIncomeCountry"
