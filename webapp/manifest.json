@@ -142,6 +142,7 @@
                 "settings": {
                     "title": "Orders Quantity",
                     "entitySet": "OVPCards",
+                    "navigation" : "headerNav",
                     "tabs": [
                         {
                             "value": "By Country",
