@@ -165,6 +165,7 @@
                 "settings": {
                     "title": "Income Percentage",
                     "entitySet": "OVPCards",
+                    "navigation" : "headerNav",
                     "dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#dpAVGIncomeCountry",
                     "presentationAnnotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant#pvAVGIncomeCountry",
                     "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#AVGIncomeCountry"
@@ -183,6 +184,7 @@
                     "presentationAnnotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant#pvOrdersList",
                     "annotationPath": "com.sap.vocabularies.UI.v1.LineItem#OrdersList",
                     "dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#GrossIncomPercentageList",
+                    "navigation" : "headerNav",
                     "defaultSpan": {
                         "rows": 10,
                         "cols": 1
