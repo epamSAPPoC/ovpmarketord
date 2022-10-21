@@ -135,6 +135,9 @@
         "containerLayout": "resizable",
         "enableLiveFilter": true,
         "considerAnalyticalParameters": false,
+        "chartSettings": {
+            "showDataLabel":true
+        },
         "cards": {
             "IDOrdQuanByCountry": {
                 "model": "mainModel",
