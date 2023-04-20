@@ -148,15 +148,15 @@
                     "tabs": [
                         {
                             "value": "By Country",
+                            "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#OrdQuanByCountry",
                             "dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#dpOrdQuanByCountry",
-                            "presentationAnnotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant#pvOrdQuanByCountry",
-                            "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#OrdQuanByCountry"
+                            "presentationAnnotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant#pvOrdQuanByCountry"
                         },
                         {
                             "value": "By Product Groups",
+                            "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#OrdQuanByProdGr",
                             "dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#dpOrdQuanByProdGr",
-                            "presentationAnnotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant#pvOrdQuanByProdGr",
-                            "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#OrdQuanByProdGr"
+                            "presentationAnnotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant#pvOrdQuanByProdGr"
                         }
                     ]
                 }
